@@ -1,15 +1,26 @@
-function X=jacobi(A,B,max_iterations)
-    %erreur=1;
-    x=x0;
-    xi=x;
-    X=[];
-    i=0;
-    D=diag(diag(A));
-    while i<max_iterations
-        for ligne in range()
-            xi=x-D\A*x+D\B;
-        %erreur=norm(x-xi);
-            x=xi;
-            X=[X,x];
-        i=i+1;
-end
+%% Jacobi Method
+function x=jacobi(A,B,x,max_iterations)
+    n=size(x,1);
+    erreur=Inf; 
+    iteration=0;
+    tol=1e-5;
+
+    while erreur>tol & iteration < max_iterations
+        xold=x;
+
+        for i=1:n
+            sigma=0;
+
+            for j=1:n
+                if j~=i
+                    sigma=sigma+A(i,j)*x(j);
+                end
+            end
+
+            x(i)=(1/A(i,i))*(B(i)-sigma);
+        end
+
+        iteration=iteration+1;
+        
+        erreur=abs(xold-x);
+    end
