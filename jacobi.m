@@ -1,11 +1,16 @@
 %% Jacobi Method
-function x=jacobi(A,B,x,max_iterations)
-    n=size(x,1);
-    erreur=Inf; 
-    iteration=0;
-    tol=1e-5;
+function x=jacobi(A,B,max_iterations)
 
-    while erreur>tol & iteration < max_iterations
+    % Initialisation
+    n=size(B,1);
+    iteration=0;
+    E(1:n) = 0.001;
+    x = zeros(n, 1);
+    E = E.' ;
+
+    % On boucle à la fois sur l'erreur commise et sur le nombre maximal
+    % d'itérations
+    while abs((A*x) - B) > E & iteration < max_iterations
         xold=x;
 
         for i=1:n
@@ -21,6 +26,4 @@ function x=jacobi(A,B,x,max_iterations)
         end
 
         iteration=iteration+1;
-        
-        erreur=abs(xold-x);
     end
