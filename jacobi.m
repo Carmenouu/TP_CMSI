@@ -11,14 +11,14 @@ function x=jacobi(A,B,max_iterations)
     % On boucle à la fois sur l'erreur commise et sur le nombre maximal
     % d'itérations
     while abs((A*x) - B) > E & iteration < max_iterations
-        xold=x;
+        x_old=x;
 
         for i=1:n
             sigma=0;
 
             for j=1:n
                 if j~=i
-                    sigma=sigma+A(i,j)*x(j);
+                    sigma=sigma+A(i,j)*x_old(j);
                 end
             end
 
