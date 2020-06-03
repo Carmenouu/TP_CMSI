@@ -61,5 +61,8 @@ function x = relaxation(A, B, max_iterations)
     end
     
     disp(xi)
-    
+    figure("name","Répartition de la température à l'équilibre")
+    surf(reshape(xi, 25,20))
+    pause(0.1)
+
     
