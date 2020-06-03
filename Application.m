@@ -24,16 +24,33 @@ for i = 1:20
             B(index) = 500;
             P_matrix(index,index) = 1;
         else
-            %Sur les bords gauches: 3 voisins
-            if (j==1)
-                P_matrix(index,index) = -3;
+            %Sur les bords gauches haut : pointillés voisins
+            if (j==1 && i<10)
+                P_matrix(index,index) = -4;
+                P_matrix(index,index+18)= 1;
                 P_matrix(index,index+1)= 1;
                 P_matrix(index,index+25)= 1;
                 P_matrix(index,index-25)= 1;
-            %Sur les bords droits: 3 voisins
+            %Sur les bords gauches bas : bord droit voisins
+            elseif (j==1 && i>11)
+                P_matrix(index,index) = -4;
+                P_matrix(index,index+24)= 1;
+                P_matrix(index,index+1)= 1;
+                P_matrix(index,index+25)= 1;
+                P_matrix(index,index-25)= 1;
+            %Sur les bords droits: bord gauche bas voisins
             elseif(j==25)
-                P_matrix(index,index) = -3;
+                P_matrix(index,index) = -4;
+                P_matrix(index,index-24)= 1;
                 P_matrix(index,index-1)= 1;
+                P_matrix(index,index+25)= 1;
+                P_matrix(index,index-25)= 1;
+            %Sur les pointillés
+            elseif(j==19 && i<=10)
+                P_matrix(index,index) = -5;
+                P_matrix(index,index-18)= 1;
+                P_matrix(index,index-1)= 1;
+                P_matrix(index,index+1)= 1;
                 P_matrix(index,index+25)= 1;
                 P_matrix(index,index-25)= 1;
             %Sur le reste
