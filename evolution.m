@@ -124,7 +124,7 @@ for i = 1:20
 end
 
 % pas et temps total en secondes
-pas = 0.1;
+pas = 0.05;
 temps = 100;
 
 % exponentielle de la matrice A (du Laplacien)
@@ -132,7 +132,8 @@ expA = expm(pas*P_matrix);
 figure("name","évolution de la température");
 for i = 1:(temps/pas)
     B = expA*B;
-    surf(reshape(B, 25,20))
-    disp(i*pas)
+    surf(reshape(B, 25,20));
+    zlim([0, 500]);
+    disp(i*pas);
     pause(pas)
 end
